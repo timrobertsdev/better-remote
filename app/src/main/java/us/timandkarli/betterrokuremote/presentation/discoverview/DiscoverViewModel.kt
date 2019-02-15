@@ -1,6 +1,5 @@
 package us.timandkarli.betterrokuremote.presentation.discoverview
 
-import android.net.wifi.WifiManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,8 +16,7 @@ import java.nio.charset.Charset
 
 class DiscoverViewModel(
     private val api: RokuService,
-    private val hostSelectionInterceptor: HostSelectionInterceptor,
-    private val wifiManager: WifiManager
+    private val hostSelectionInterceptor: HostSelectionInterceptor
 ) : ViewModel() {
     private val _viewState = MutableLiveData<DiscoverViewState>()
     val viewState: LiveData<DiscoverViewState> = _viewState
@@ -40,7 +38,7 @@ class DiscoverViewModel(
     }
 
     init {
-        _viewState.value = DiscoverViewState()
+        _viewState.value = DiscoverViewState.Initializing()
         discoverJob = discover()
     }
 
@@ -49,12 +47,14 @@ class DiscoverViewModel(
         Timber.w("If we don't get any results, make sure DiscoverFragment acquires the multicast lock before this method is called.")
         // We can't call cancelDiscover() first here because it will cause a NPE. Instead, we call it in the public
         // startDiscover() method. As this is an init method, the discoverJob shouldn't ever be running at this point anyway.
-        _viewState.postValue(DiscoverViewState(state = DiscoverState.DISCOVERING, data = null))
+        _viewState.postValue(DiscoverViewState.Discovering())
 
         return CoroutineScope(Dispatchers.IO).launch {
             // Send discovery request
             val req = ROKU_ECP_REQUEST.toByteArray(Charset.defaultCharset())
             val socket = MulticastSocket(ROKU_DISCOVER_PORT)
+            // Socket timeout required to make cancellation immediate, otherwise the job sticks around until the socket
+            // closes by itself and does weird things to the Search/Cancel button.
             socket.soTimeout = 10
             val group = InetAddress.getByName(ROKU_DISCOVER_IP)
             socket.joinGroup(group)
@@ -65,12 +65,6 @@ class DiscoverViewModel(
                 // 3 second timeout or until cancelled
                 // TODO: Incrementally increase timeout if no devices are found
                 withTimeout(5000) {
-                    val multicastLock = wifiManager.createMulticastLock("multicastLock")
-                    multicastLock?.apply {
-                        setReferenceCounted(true)
-                        acquire()
-                    }
-
                     while (isActive) {
                         val buffer = ByteArray(300)
 
@@ -88,24 +82,24 @@ class DiscoverViewModel(
 
                                 hostSelectionInterceptor.host = location
 
-                                val deviceInfoResponse = api.getDeviceInfo()
+                                val deviceInfoResponse = api.getDeviceInfoAsync()
                                 val rokuDevice = RokuDevice(location, deviceInfoResponse.await().friendlyDeviceName)
 
                                 // Reset host to null to avoid weird bugs
                                 hostSelectionInterceptor.host = null
-                                _viewState.postValue(_viewState.value!!.copy(data = rokuDevice))
+                                _viewState.postValue(DiscoverViewState.Discovered(rokuDevice))
                             }
                         }
-                        // TODO: Better solution. yield() is required for withTimeout to work
+                        // last suspension point for withTimeout to work, otherwise gets stuck
                         yield()
                     }
                 }
             } catch (e: TimeoutCancellationException) {
                 Timber.d("discover() ended naturally")
-                _viewState.postValue(DiscoverViewState(state = DiscoverState.FINISHED, data = null))
+                _viewState.postValue(DiscoverViewState.Finished())
             } catch (e: CancellationException) {
                 Timber.d("discover() cancelled")
-                _viewState.postValue(DiscoverViewState(state = DiscoverState.CANCELLED, data = null))
+                _viewState.postValue(DiscoverViewState.Cancelled())
             } finally {
                 Timber.d("discover() cleaning up")
                 socket.close()
@@ -125,10 +119,6 @@ class DiscoverViewModel(
          if (discoverJob.isActive) {
              discoverJob.cancelAndJoin()
          }
-    }
-
-    fun setHost(host: String) {
-        hostSelectionInterceptor.host = host
     }
 
     override fun onCleared() {
