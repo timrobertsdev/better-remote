@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/remoteFragment">
+
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="us.timandkarli.betterrokuremote.presentation.discoverview.DiscoverFragment"
+        android:label="discover_fragment"
+        tools:layout="@layout/discover_fragment" />
+    <fragment
+        android:id="@+id/remoteFragment"
+        android:name="us.timandkarli.betterrokuremote.presentation.remoteview.RemoteFragment"
+        android:label="remote_fragment"
+        tools:layout="@layout/remote_fragment" >
+        <action
+            android:id="@+id/remote_to_discover"
+            app:destination="@+id/discoverFragment" />
+    </fragment>
+</navigation>
