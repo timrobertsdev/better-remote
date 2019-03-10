@@ -6,13 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".presentation.remoteview.RemoteFragment">
 
-    <include
-        android:id="@+id/current_device"
-        layout="@layout/discovered_device_card"
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Power"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/vol_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volume Up"
+        app:layout_constraintBottom_toTopOf="@id/vol_down"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/vol_up"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
@@ -23,22 +42,8 @@
         app:layout_constraintBottom_toTopOf="@id/move_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vol_up"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <Button
-        android:id="@+id/vol_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volume Up"
-        app:layout_constraintBottom_toTopOf="@id/vol_down"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_device"/>
+        app:layout_constraintTop_toBottomOf="@id/vol_up" />
 
     <Button
         android:id="@+id/move_up"
@@ -55,12 +60,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Left"
-        app:layout_constraintBottom_toTopOf="@id/move_down"
+        app:layout_constraintBottom_toBottomOf="@id/okay"
         app:layout_constraintEnd_toStartOf="@id/okay"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/move_up" />
+        app:layout_constraintTop_toTopOf="@id/okay" />
 
     <Button
         android:id="@+id/okay"
@@ -77,10 +82,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Right"
-        app:layout_constraintBottom_toTopOf="@id/move_down"
+        app:layout_constraintBottom_toBottomOf="@id/okay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/okay"
-        app:layout_constraintTop_toBottomOf="@id/move_up" />
+        app:layout_constraintTop_toTopOf="@id/okay" />
 
     <Button
         android:id="@+id/move_down"

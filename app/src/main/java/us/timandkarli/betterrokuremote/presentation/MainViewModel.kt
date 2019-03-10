@@ -5,19 +5,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import us.timandkarli.betterrokuremote.models.RokuDevice
 import us.timandkarli.betterrokuremote.network.HostSelectionInterceptor
+import us.timandkarli.betterrokuremote.network.RokuService
 
 class MainViewModel(
-    private val hostSelectionInterceptor: HostSelectionInterceptor
+    private val hostSelectionInterceptor: HostSelectionInterceptor,
+    private val rokuService: RokuService
 ) : ViewModel() {
-    private val _currentDevice = MutableLiveData<CurrentDeviceState>()
-    val currentDevice: LiveData<CurrentDeviceState> = _currentDevice
+    private val _viewState = MutableLiveData<MainViewState>()
+    val viewState: LiveData<MainViewState> = _viewState
 
     init {
-        _currentDevice.postValue(CurrentDeviceState.NoDeviceSelected())
+        _viewState.postValue(MainViewState.NoDeviceSelected)
     }
 
     fun setCurrentDevice(rokuDevice: RokuDevice) {
         hostSelectionInterceptor.host = rokuDevice.location
-        _currentDevice.postValue(CurrentDeviceState.DeviceSelected(rokuDevice))
+        _viewState.postValue(MainViewState.DeviceSelected(rokuDevice))
     }
 }

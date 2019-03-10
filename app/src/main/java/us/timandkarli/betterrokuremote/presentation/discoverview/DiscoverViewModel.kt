@@ -82,8 +82,12 @@ class DiscoverViewModel(
 
                                 hostSelectionInterceptor.host = location
 
-                                val deviceInfoResponse = api.getDeviceInfoAsync()
-                                val rokuDevice = RokuDevice(location, deviceInfoResponse.await().friendlyDeviceName)
+                                val deviceInfoResponse = api.getDeviceInfoAsync().await()
+                                val rokuDevice = RokuDevice(
+                                    location,
+                                    deviceInfoResponse.friendlyDeviceName,
+                                    deviceInfoResponse.deviceId
+                                )
 
                                 // Reset host to null to avoid weird bugs
                                 hostSelectionInterceptor.host = null

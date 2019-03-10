@@ -5,6 +5,10 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/remoteFragment">
 
+    <action
+        android:id="@+id/global_launch_discover"
+        app:destination="@id/discoverFragment" />
+
     <fragment
         android:id="@+id/discoverFragment"
         android:name="us.timandkarli.betterrokuremote.presentation.discoverview.DiscoverFragment"

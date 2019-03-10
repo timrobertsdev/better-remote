@@ -7,7 +7,7 @@ import us.timandkarli.betterrokuremote.presentation.discoverview.DiscoverViewMod
 import us.timandkarli.betterrokuremote.presentation.remoteview.RemoteViewModel
 
 val appModule = module {
+    viewModel { MainViewModel(get(), get()) }
     viewModel { DiscoverViewModel(get(), get()) }
-    viewModel { MainViewModel(get()) }
     viewModel { RemoteViewModel(get()) }
 }
