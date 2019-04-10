@@ -11,6 +11,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import us.timandkarli.betterrokuremote.R
 
 class MainActivity : AppCompatActivity() {
+
     private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
                     // TODO: Add snackbar notification
                     findNavController(R.id.nav_host_fragment).navigate(R.id.global_launch_discover)
                 is MainViewState.NoDeviceSelected ->
-                    // TODO: Add snackbar notification
                     findNavController(R.id.nav_host_fragment).navigate(R.id.global_launch_discover)
             }
         })
