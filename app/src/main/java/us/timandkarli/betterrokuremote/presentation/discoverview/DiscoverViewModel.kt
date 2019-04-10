@@ -35,6 +35,9 @@ class DiscoverViewModel(
                 "[0-9]{2}|[1-9][0-9]|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}" +
                 "|[1-9][0-9]|[0-9]))"
         private val IP_ADDRESS_REGEX = IP_ADDRESS_STRING.toRegex()
+        // Socket timeout required to make cancellation immediate, otherwise the job sticks around until the socket
+        // closes by itself and does weird things to the Search/Cancel button.
+        private const val SOCKET_TIMEOUT_MS = 10
     }
 
     init {
@@ -53,18 +56,15 @@ class DiscoverViewModel(
             // Send discovery request
             val req = ROKU_ECP_REQUEST.toByteArray(Charset.defaultCharset())
             val socket = MulticastSocket(ROKU_DISCOVER_PORT)
-            // Socket timeout required to make cancellation immediate, otherwise the job sticks around until the socket
-            // closes by itself and does weird things to the Search/Cancel button.
-            socket.soTimeout = 10
+            socket.soTimeout = SOCKET_TIMEOUT_MS
             val group = InetAddress.getByName(ROKU_DISCOVER_IP)
             socket.joinGroup(group)
             val packet = DatagramPacket(req, req.size, group, ROKU_DISCOVER_PORT)
             socket.send(packet)
 
             try {
-                // 3 second timeout or until cancelled
                 // TODO: Incrementally increase timeout if no devices are found
-                withTimeout(5000) {
+                withTimeout(30000) {
                     while (isActive) {
                         val buffer = ByteArray(300)
 

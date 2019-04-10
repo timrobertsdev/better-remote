@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
                 is MainViewState.DeviceDisconnected ->
                     // TODO: Add snackbar notification
                     findNavController(R.id.nav_host_fragment).navigate(R.id.global_launch_discover)
+                is MainViewState.NoDeviceSelected ->
+                    // TODO: Add snackbar notification
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.global_launch_discover)
             }
         })
     }

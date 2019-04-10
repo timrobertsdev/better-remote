@@ -61,5 +61,11 @@ data class DeviceInfoResponse(
     @PropertyElement(name = "supports-wake-on-wlan") val supportsWakeOnLan: Boolean,
     @PropertyElement(name = "has-play-on-roku") val hasPlayOnRoku: Boolean,
     @PropertyElement(name = "has-mobile-screensaver") val hasMobileScreensaver: Boolean,
-    @PropertyElement(name = "support-url") val supportUrl: String
+    @PropertyElement(name = "support-url") val supportUrl: String,
+    // Added after a Roku update sometime before 4/10/2019
+    @PropertyElement(name = "build-number") val buildNumber: String,
+    @PropertyElement(name = "grandcentral-version") val grandCentralVersion: String,
+    @PropertyElement(name = "trc-version") val trcVersion: String,
+    @PropertyElement(name = "trc-channel-version") val trcChannelVersion: String,
+    @PropertyElement(name = "davinci-version") val davinciVersion: String
 )
