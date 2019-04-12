@@ -28,11 +28,11 @@ class MainViewModel(
     val viewState: LiveData<MainViewState> = _viewState
 
     init {
-        _viewState.postValue(MainViewState.ReconnectingLastDevice)
-        checkAlive()
+        _viewState.postValue(MainViewState.Initializing)
     }
 
-    fun checkAlive() {
+    fun reconnectLastDevice() {
+        _viewState.postValue(MainViewState.ReconnectingLastDevice)
         // first check if we have anything in sharedPrefs
         val previousLocation = sharedPrefs.getString(PREVIOUS_LOCATION_KEY, null)
         val previousName = sharedPrefs.getString(PREVIOUS_NAME_KEY, null)

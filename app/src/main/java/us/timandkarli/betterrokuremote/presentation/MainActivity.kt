@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
         subscribeViewState()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.reconnectLastDevice()
+    }
+
     override fun onSupportNavigateUp() = findNavController(R.id.nav_host_fragment).navigateUp()
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
