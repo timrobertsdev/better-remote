@@ -8,12 +8,14 @@ import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import us.timandkarli.betterrokuremote.network.HostSelectionInterceptor
 import us.timandkarli.betterrokuremote.network.RokuService
+import java.util.concurrent.TimeUnit
 
 val netModule = module {
     single { HostSelectionInterceptor() }
     single { HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY } }
     single {
         OkHttpClient.Builder()
+            .callTimeout(3, TimeUnit.SECONDS)
             .addInterceptor(get<HostSelectionInterceptor>())
             .addInterceptor(get<HttpLoggingInterceptor>())
             .build()

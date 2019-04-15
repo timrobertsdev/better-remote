@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Better Roku Remote</string>
+    <string name="home_button_text">Home</string>
+    <string name="power_button_text">Power</string>
+    <string name="volume_up_button_text">Volume Up</string>
+    <string name="volume_down_button_text">Volume Down</string>
+    <string name="up_button_text">Up</string>
+    <string name="left_button_text">Left</string>
+    <string name="okay_button_text">Okay</string>
+    <string name="right_button_text">Right</string>
+    <string name="down_button_text">Down</string>
+    <string name="back_button_text">Back</string>
 </resources>

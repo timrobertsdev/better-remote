@@ -10,7 +10,7 @@
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:text="@string/home_button_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,7 +18,7 @@
         android:id="@+id/power"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Power"
+        android:text="@string/power_button_text"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/vol_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volume Up"
+        android:text="@string/volume_up_button_text"
         app:layout_constraintBottom_toTopOf="@id/vol_down"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -38,7 +38,7 @@
         android:id="@+id/vol_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volume Down"
+        android:text="@string/volume_down_button_text"
         app:layout_constraintBottom_toTopOf="@id/move_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -49,7 +49,7 @@
         android:id="@+id/move_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Up"
+        android:text="@string/up_button_text"
         app:layout_constraintBottom_toTopOf="@id/okay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
         android:id="@+id/move_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Left"
+        android:text="@string/left_button_text"
         app:layout_constraintBottom_toBottomOf="@id/okay"
         app:layout_constraintEnd_toStartOf="@id/okay"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,7 +71,7 @@
         android:id="@+id/okay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Okay"
+        android:text="@string/okay_button_text"
         app:layout_constraintBottom_toTopOf="@id/move_down"
         app:layout_constraintEnd_toStartOf="@id/move_right"
         app:layout_constraintStart_toEndOf="@id/move_left"
@@ -81,7 +81,7 @@
         android:id="@+id/move_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Right"
+        android:text="@string/right_button_text"
         app:layout_constraintBottom_toBottomOf="@id/okay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/okay"
@@ -91,10 +91,18 @@
         android:id="@+id/move_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Down"
+        android:text="@string/down_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/okay" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

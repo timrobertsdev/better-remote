@@ -52,6 +52,7 @@ class MainViewModel(
         } catch (e: IOException) {
             Timber.d("Device did not respond to device-info query.")
             _viewState.postValue(MainViewState.DeviceDisconnected)
+            clearLastDevice()
             return
         }
 
@@ -60,18 +61,23 @@ class MainViewModel(
             _viewState.postValue(MainViewState.DeviceReconnected)
             // TODO: extract into DeviceInfoResponse extension function
             val device = RokuDevice(previousLocation!!, previousName!!, response!!.deviceId)
-            setCurrentDevice(device)
+            setCurrentDevice(device, true)
         }
-
-        // TODO: Support reconnecting to a new Roku @ that address, instead of just the same one
     }
 
-    fun setCurrentDevice(rokuDevice: RokuDevice) {
+    fun setCurrentDevice(rokuDevice: RokuDevice, isPrevious: Boolean = false) {
         hostSelectionInterceptor.host = rokuDevice.location
         _viewState.postValue(MainViewState.DeviceSelected(rokuDevice))
-        sharedPrefs.edit {
+        if (!isPrevious) sharedPrefs.edit {
             putString(PREVIOUS_LOCATION_KEY, rokuDevice.location)
             putString(PREVIOUS_NAME_KEY, rokuDevice.friendlyDeviceName)
+        }
+    }
+
+    private fun clearLastDevice() {
+        sharedPrefs.edit {
+            remove(PREVIOUS_NAME_KEY)
+            remove(PREVIOUS_LOCATION_KEY)
         }
     }
 }
