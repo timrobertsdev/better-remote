@@ -92,10 +92,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/down_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/okay" />
+
+    <Button
+        android:id="@+id/play_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play_pause"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/move_down" />
+
+    <Button
+        android:id="@+id/rewind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rewind"
+        app:layout_constraintEnd_toStartOf="@id/play_pause"
+        app:layout_constraintTop_toTopOf="@id/play_pause" />
+
+    <Button
+        android:id="@+id/fast_forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fast_forward"
+        app:layout_constraintStart_toEndOf="@id/play_pause"
+        app:layout_constraintTop_toTopOf="@id/play_pause" />
 
     <Button
         android:id="@+id/back"

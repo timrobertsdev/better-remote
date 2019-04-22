@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import us.timandkarli.betterrokuremote.network.RokuService
 
+@Suppress("DeferredResultUnused")
 class RemoteViewModel(private val rokuService: RokuService) : ViewModel() {
     companion object {
         // TODO: Change to configurable setting
@@ -38,4 +39,10 @@ class RemoteViewModel(private val rokuService: RokuService) : ViewModel() {
     fun goHome() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("Home") }
 
     fun powerOff() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("PowerOff") }
+
+    fun playPause() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("Play") }
+
+    fun rewind() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("Rev") }
+
+    fun fastForward() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("Fwd") }
 }

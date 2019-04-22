@@ -10,4 +10,7 @@
     <string name="right_button_text">Right</string>
     <string name="down_button_text">Down</string>
     <string name="back_button_text">Back</string>
+    <string name="play_pause">Play/Pause</string>
+    <string name="rewind">Rewind</string>
+    <string name="fast_forward">Fast Forward</string>
 </resources>

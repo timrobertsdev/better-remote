@@ -61,5 +61,8 @@ class RemoteFragment : Fragment() {
         okay.setOnClickListener { remoteViewModel.okay() }
         power.setOnClickListener { remoteViewModel.powerOff() }
         home.setOnClickListener { remoteViewModel.goHome() }
+        play_pause.setOnClickListener { remoteViewModel.playPause() }
+        rewind.setOnClickListener { remoteViewModel.rewind() }
+        fast_forward.setOnClickListener { remoteViewModel.fastForward() }
     }
 }
