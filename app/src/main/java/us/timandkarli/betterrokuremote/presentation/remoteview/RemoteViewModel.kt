@@ -38,6 +38,8 @@ class RemoteViewModel(private val rokuService: RokuService) : ViewModel() {
 
     fun goHome() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("Home") }
 
+    fun goBack() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("Back") }
+
     fun powerOff() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("PowerOff") }
 
     fun playPause() = CoroutineScope(Dispatchers.IO).launch { rokuService.sendKeyAsync("Play") }
