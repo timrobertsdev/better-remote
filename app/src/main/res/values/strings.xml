@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Better Roku Remote</string>
+    <string name="app_name">Simple Remote</string>
     <string name="home_button_text">Home</string>
     <string name="power_button_text">Power</string>
     <string name="volume_up_button_text">Volume Up</string>
