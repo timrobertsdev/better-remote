@@ -36,7 +36,7 @@ object Libraries {
         const val koin = "2.0.1"
         const val retrofit = "2.6.3"
         const val okhttp = "4.2.2"
-        const val tikxml = "0.8.13"
+        const val tikxml = "master-SNAPSHOT"
         const val groupie = "2.7.2"
         const val glide = "4.10.0"
         const val timber = "4.7.1"
@@ -77,10 +77,11 @@ object Libraries {
     }
 
     object Tikxml {
-        const val core = "com.tickaroo.tikxml:core:${Versions.tikxml}"
-        const val annotation = "com.tickaroo.tikxml:annotation:${Versions.tikxml}"
-        const val processor = "com.tickaroo.tikxml:processor:${Versions.tikxml}"
-        const val retrofit = "com.tickaroo.tikxml:retrofit-converter:${Versions.tikxml}"
+        const val core = "com.github.tickaroo.tikxml:core:${Versions.tikxml}"
+        const val annotation = "com.github.tickaroo.tikxml:annotation:${Versions.tikxml}"
+        const val processor = "com.github.tickaroo.tikxml:processor:${Versions.tikxml}"
+        const val processorCommon = "com.github.tickaroo.tikxml:processor-common:${Versions.tikxml}"
+        const val retrofit = "com.github.tickaroo.tikxml:retrofit-converter:${Versions.tikxml}"
     }
 
     object Okhttp {

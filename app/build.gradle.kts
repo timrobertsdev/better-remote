@@ -53,6 +53,7 @@ dependencies {
     implementation(Libraries.Tikxml.annotation)
     implementation(Libraries.Tikxml.core)
     kapt(Libraries.Tikxml.processor)
+    kapt(Libraries.Tikxml.processorCommon)
     implementation(Libraries.Tikxml.retrofit)
     implementation(Libraries.Okhttp.okhttp)
     implementation(Libraries.Okhttp.logging)
