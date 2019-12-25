@@ -9,10 +9,10 @@ import us.timandkarli.simpleremote.network.models.DeviceInfoResponse
 
 interface RokuService {
     @GET("query/device-info")
-    suspend fun getDeviceInfoAsync(): DeviceInfoResponse
+    suspend fun getDeviceInfoAsync(): Response<DeviceInfoResponse>
 
     @GET("query/active-app")
-    suspend fun getActiveAppAsync(): ActiveAppResponse
+    suspend fun getActiveAppAsync(): Response<ActiveAppResponse>
 
     @POST("keypress/{key}")
     suspend fun sendKeyAsync(@Path("key") key: String): Response<Unit>

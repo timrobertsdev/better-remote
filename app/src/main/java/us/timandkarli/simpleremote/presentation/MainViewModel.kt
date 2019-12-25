@@ -47,7 +47,7 @@ class MainViewModel(
         val response: DeviceInfoResponse? = try {
             runBlocking {
                 hostSelectionInterceptor.host = previousLocation!!
-                rokuService.getDeviceInfoAsync()
+                rokuService.getDeviceInfoAsync().body()
             }
         } catch (e: IOException) {
             Timber.d("Device did not respond to device-info query.")
