@@ -11,12 +11,12 @@
 
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="us.timandkarli.simpleremote.presentation.discoverview.DiscoverFragment"
+        android:name="dev.timroberts.simpleremote.presentation.discoverview.DiscoverFragment"
         android:label="discover_fragment"
         tools:layout="@layout/discover_fragment" />
     <fragment
         android:id="@+id/remoteFragment"
-        android:name="us.timandkarli.simpleremote.presentation.remoteview.RemoteFragment"
+        android:name="dev.timroberts.simpleremote.presentation.remoteview.RemoteFragment"
         android:label="remote_fragment"
         tools:layout="@layout/remote_fragment" >
         <action

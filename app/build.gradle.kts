@@ -11,7 +11,7 @@ plugins {
 android {
     compileSdkVersion(AndroidSdk.compile)
     defaultConfig {
-        applicationId = "us.timandkarli.simpleremote"
+        applicationId = "dev.timroberts.simpleremote"
         minSdkVersion(AndroidSdk.min)
         targetSdkVersion(AndroidSdk.target)
         buildToolsVersion(AndroidSdk.buildToolsVersion)
